@@ -3,7 +3,14 @@ class Aviao {
     private String modelo;
     private String identificador;
     private boolean motor;
-    private float altura;    
+    private float altura;
+
+    Aviao(String modelo, String identificador){
+        this.setModelo(modelo);
+        this.setIdentificador(identificador);
+        this.setMotor(false);
+        this.setAltura(0.0f);
+    }
 
     public String getModelo() {
         return modelo;
