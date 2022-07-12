@@ -9,5 +9,10 @@ class Main {
         + "\nIdentificador: " + aviao.getIdentificador()
         + "\nMotor: " + aviao.isMotor()
         + "\nAltura: " + aviao.getAltura());
+
+        aviao.ligarMotor();
+        aviao.imprimeEstadoMotor();
+        aviao.desligarMotor();
+        aviao.imprimeEstadoMotor();
     }
 }

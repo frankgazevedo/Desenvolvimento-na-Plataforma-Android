@@ -46,5 +46,21 @@ class Aviao {
 
     public void imprimaOk(){
         System.out.println("Ok");
-    }   
+    }
+
+    public void ligarMotor(){
+        this.setMotor(true);
+        System.out.println("Vrummmmmmm");
+    }
+
+    public void desligarMotor(){
+        this.setMotor(false);;
+    }
+
+    public void imprimeEstadoMotor(){
+        if(this.isMotor())
+            System.out.println("O motor esta ligado..");
+        else
+            System.out.println("O motor está desligado..");
+    }
 }
