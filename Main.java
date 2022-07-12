@@ -28,5 +28,23 @@ class Main {
         aviao.desligarMotor();
         aviao.desacelerar();
 
+        System.out.println();
+
+        aviao.ligarMotor();
+        aviao.acelerar();
+        aviao.acelerar();
+        aviao.acelerar();
+        aviao.acelerar();
+        aviao.acelerar();
+
+        System.out.println();
+
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desacelerar();
+
     }
 }
