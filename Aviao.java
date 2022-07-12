@@ -4,7 +4,9 @@ class Aviao {
     private String identificador;
     private boolean motor;
     private float altura;
+    private float velocidade;
 
+    
     Aviao(String modelo, String identificador){
         this.setModelo(modelo);
         this.setIdentificador(identificador);
@@ -39,9 +41,17 @@ class Aviao {
     public float getAltura() {
         return altura;
     }
-
+    
     public void setAltura(float altura) {
         this.altura = altura;
+    }
+    
+    public float getVelocidade() {
+        return velocidade;
+    }
+
+    public void setVelocidade(float velocidade) {
+        this.velocidade = velocidade;
     }
 
     public void imprimaOk(){
@@ -62,5 +72,28 @@ class Aviao {
             System.out.println("O motor esta ligado..");
         else
             System.out.println("O motor está desligado..");
+    }
+
+    public boolean getEstadoMotor(){
+        return isMotor();
+    }
+
+    public void acelerar(){
+        if(this.getEstadoMotor()){
+            this.setVelocidade(this.getVelocidade() + 50.0f);
+            System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+        }
+        else
+            System.out.println("ERRO: Motor desligado");
+    }
+
+    public void desacelerar(){
+        if(this.getEstadoMotor()){
+            if(this.getVelocidade() > 0.0f)
+                this.setVelocidade(this.getVelocidade() - 50.0f);
+            System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+        }
+        else
+            System.out.println("ERRO: Motor desligado");
     }
 }

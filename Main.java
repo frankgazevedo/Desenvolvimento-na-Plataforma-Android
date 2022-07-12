@@ -14,5 +14,19 @@ class Main {
         aviao.imprimeEstadoMotor();
         aviao.desligarMotor();
         aviao.imprimeEstadoMotor();
+
+        aviao.ligarMotor();
+        aviao.acelerar();
+        aviao.acelerar();
+        aviao.desligarMotor();
+        aviao.acelerar();
+
+        aviao.ligarMotor();
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desacelerar();
+        aviao.desligarMotor();
+        aviao.desacelerar();
+
     }
 }
