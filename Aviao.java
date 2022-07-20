@@ -76,9 +76,11 @@ class Aviao {
         System.out.println("Ok");
     }
 
-    public void ligarMotor(){
-        this.getMotorEsquerdo().ligar();
-        this.getMotorDireito().ligar();
+    public void ligarMotor(Motor motor){
+        if(motor.equals(this.getMotorEsquerdo()))
+            this.getMotorEsquerdo().ligar();
+        else
+            this.getMotorDireito().ligar();
     }
 
     public void desligarMotor(){
