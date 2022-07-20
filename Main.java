@@ -1,50 +1,53 @@
 class Main {
     public static void main(String[] args) {
+
+        Motor motor01 = new Motor("a320", 50.0f);
+        Motor motor02 = new Motor("b737", 50.0f);
         
-        Aviao aviao = new Aviao("BlackBird", "14 Bis");
+        Aviao plane = new Aviao("BlackBird", "14 Bis");
 
-        aviao.imprimaOk();
+        plane.imprimaOk();
 
-        System.out.println("Modelo: " + aviao.getModelo()
-        + "\nIdentificador: " + aviao.getIdentificador()
-        + "\nMotor: " + aviao.isMotor()
-        + "\nAltura: " + aviao.getAltura());
+        System.out.println("Modelo: " + plane.getModelo()
+        + "\nIdentificador: " + plane.getIdentificador()
+        + "\nMotor: " + plane.isMotor()
+        + "\nAltura: " + plane.getAltura());
 
-        aviao.ligarMotor();
-        aviao.imprimeEstadoMotor();
-        aviao.desligarMotor();
-        aviao.imprimeEstadoMotor();
+        plane.ligarMotor();
+        plane.imprimeEstadoMotor();
+        plane.desligarMotor();
+        plane.imprimeEstadoMotor();
 
-        aviao.ligarMotor();
-        aviao.acelerar();
-        aviao.acelerar();
-        aviao.desligarMotor();
-        aviao.acelerar();
+        plane.ligarMotor();
+        plane.acelerar();
+        plane.acelerar();
+        plane.desligarMotor();
+        plane.acelerar();
 
-        aviao.ligarMotor();
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desligarMotor();
-        aviao.desacelerar();
-
-        System.out.println();
-
-        aviao.ligarMotor();
-        aviao.acelerar();
-        aviao.acelerar();
-        aviao.acelerar();
-        aviao.acelerar();
-        aviao.acelerar();
+        plane.ligarMotor();
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desligarMotor();
+        plane.desacelerar();
 
         System.out.println();
 
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desacelerar();
-        aviao.desacelerar();
+        plane.ligarMotor();
+        plane.acelerar();
+        plane.acelerar();
+        plane.acelerar();
+        plane.acelerar();
+        plane.acelerar();
+
+        System.out.println();
+
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desacelerar();
+        plane.desacelerar();
 
     }
 }
