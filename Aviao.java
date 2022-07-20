@@ -2,15 +2,17 @@ class Aviao {
     
     private String modelo;
     private String identificador;
-    private boolean motor;
     private float altura;
     private float velocidade;
     private boolean emVoo;
+    private Motor motorEsquerdo;
+    private Motor motorDireito;
     
-    Aviao(String modelo, String identificador){
+    Aviao(String modelo, String identificador, Motor motorEsquerdo, Motor motorDireito){
         this.setModelo(modelo);
         this.setIdentificador(identificador);
-        this.setMotor(false);
+        this.setMotorEsquerdo(motorEsquerdo);
+        this.setMotorDireito(motorDireito);
         this.setAltura(0.0f);
     }
 
@@ -28,14 +30,6 @@ class Aviao {
     
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
-    }
-    
-    public boolean isMotor() {
-        return motor;
-    }
-    
-    public void setMotor(boolean motor) {
-        this.motor = motor;
     }
     
     public float getAltura() {
@@ -57,9 +51,25 @@ class Aviao {
     public boolean isEmVoo() {
         return emVoo;
     }
-
+    
     public void setEmVoo(boolean emVoo) {
         this.emVoo = emVoo;
+    }
+
+    public Motor getMotorEsquerdo() {
+        return motorEsquerdo;
+    }
+
+    public void setMotorEsquerdo(Motor motorEsquerdo) {
+        this.motorEsquerdo = motorEsquerdo;
+    }
+
+    public Motor getMotorDireito() {
+        return motorDireito;
+    }
+
+    public void setMotorDireito(Motor motorDireito) {
+        this.motorDireito = motorDireito;
     }
     
     public void imprimaOk(){
@@ -67,29 +77,51 @@ class Aviao {
     }
 
     public void ligarMotor(){
-        this.setMotor(true);
-        System.out.println("Vrummmmmmm");
+        this.getMotorEsquerdo().ligar();
+        this.getMotorDireito().ligar();
     }
 
     public void desligarMotor(){
-        this.setMotor(false);;
+        this.getMotorEsquerdo().desligar();
+        this.getMotorDireito().desligar();
     }
 
     public void imprimeEstadoMotor(){
-        if(this.isMotor())
-            System.out.println("O motor esta ligado..");
+        if(this.getEstadoMotor())
+            if(this.getMotorEsquerdo().isAtivo())
+                if(this.getMotorDireito().isAtivo())
+                    System.out.println("Os motores estão ligados..");
+                else
+                    System.out.println("Somente o motor Esquerdo está ligado");
+            else
+                System.out.println("Somente o motor Direito está ligado");
+           
         else
-            System.out.println("O motor está desligado..");
+            System.out.println("Os motores estão desligados..");
     }
 
     public boolean getEstadoMotor(){
-        return isMotor();
+        if(this.getMotorEsquerdo().isAtivo() || this.getMotorDireito().isAtivo())
+            return true;
+        else
+            return false;
     }
 
     public void acelerar(){
         if(this.getEstadoMotor()){
-            this.setVelocidade(this.getVelocidade() + 50.0f);
-            System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+            if(this.getMotorEsquerdo().isAtivo())
+                if(this.getMotorDireito().isAtivo()){
+                    this.setVelocidade(this.getVelocidade() + this.getMotorEsquerdo().getPotencia() + this.getMotorDireito().getPotencia());
+                    System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+                }
+                else{
+                    this.setVelocidade(this.getVelocidade() + this.getMotorEsquerdo().getPotencia());
+                    System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+                }
+            else{
+                this.setVelocidade(this.getVelocidade() + this.getMotorDireito().getPotencia());
+                System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+            }
         }
         else
             System.out.println("ERRO: Motor desligado");
@@ -98,11 +130,21 @@ class Aviao {
     }
 
     public void desacelerar(){
-        if(this.getEstadoMotor()){
+        if(this.getEstadoMotor())
             if(this.getVelocidade() > 0.0f)
-                this.setVelocidade(this.getVelocidade() - 50.0f);
-            System.out.println("Aviao a " + this.getVelocidade() + " km/h");
-        }
+                if(this.getMotorEsquerdo().isAtivo())
+                    if(this.getMotorDireito().isAtivo()){
+                        this.setVelocidade(this.getVelocidade() - this.getMotorEsquerdo().getPotencia() - this.getMotorDireito().getPotencia());
+                        System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+                    }
+                    else{
+                        this.setVelocidade(this.getVelocidade() - this.getMotorEsquerdo().getPotencia());
+                        System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+                    }
+                else{
+                    this.setVelocidade(this.getVelocidade() - this.getMotorDireito().getPotencia());
+                    System.out.println("Aviao a " + this.getVelocidade() + " km/h");
+                }
         else
             System.out.println("ERRO: Motor desligado");
         
