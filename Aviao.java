@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Aviao {
     
     private String modelo;
@@ -7,6 +9,8 @@ class Aviao {
     private boolean emVoo;
     private Motor motorEsquerdo;
     private Motor motorDireito;
+    private ArrayList<Passageiro> ListaPassageiros;
+    
     
     Aviao(String modelo, String identificador, Motor motorEsquerdo, Motor motorDireito){
         this.setModelo(modelo);
@@ -15,7 +19,7 @@ class Aviao {
         this.setMotorDireito(motorDireito);
         this.setAltura(0.0f);
     }
-
+    
     public String getModelo() {
         return modelo;
     }
@@ -55,21 +59,56 @@ class Aviao {
     public void setEmVoo(boolean emVoo) {
         this.emVoo = emVoo;
     }
-
+    
     public Motor getMotorEsquerdo() {
         return motorEsquerdo;
     }
-
+    
     public void setMotorEsquerdo(Motor motorEsquerdo) {
         this.motorEsquerdo = motorEsquerdo;
     }
-
+    
     public Motor getMotorDireito() {
         return motorDireito;
     }
-
+    
     public void setMotorDireito(Motor motorDireito) {
         this.motorDireito = motorDireito;
+    }
+
+    public ArrayList<Passageiro> getListaPassageiros() {
+        return ListaPassageiros;
+    }
+
+    public boolean adicionarPassageiro(Passageiro passenger){
+        if(this.getVelocidade() > 0){
+            System.out.println("Protocolos de segurança não permitem embarques com a aeronave em movimento");
+            return false;
+        }
+        else{
+            this.getListaPassageiros().add(passenger);
+            return true;
+        }
+    }
+
+    public Passageiro buscarPassageiroPorCPF(String cpf){
+        Passageiro passenger = null;
+        
+        for (Passageiro passageiro : this.getListaPassageiros())
+            if(passageiro.getCpf().equals(cpf))
+                passenger = passageiro;
+
+        return passenger;
+    }
+
+    public void desembarcarPassageiros(){
+        if(this.getVelocidade() > 0)
+            System.out.println("Protocolos de segurança não permitem desembarques com a aeronave em movimento");
+        else
+            for (Passageiro passenger : this.getListaPassageiros()) {
+                System.out.println(passenger.getPrimeiroNome() + " " + passenger.getUltimoNome() + " desembarcou da aeronave!");
+                this.getListaPassageiros().remove(passenger);
+            }
     }
     
     public void imprimaOk(){
