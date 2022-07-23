@@ -12,12 +12,13 @@ class Aviao {
     private ArrayList<Passageiro> ListaPassageiros;
     
     
-    Aviao(String modelo, String identificador, Motor motorEsquerdo, Motor motorDireito){
+    Aviao(String modelo, String identificador, Motor motorEsquerdo, Motor motorDireito, ArrayList<Passageiro> ListaPassageiros){
         this.setModelo(modelo);
         this.setIdentificador(identificador);
         this.setMotorEsquerdo(motorEsquerdo);
         this.setMotorDireito(motorDireito);
         this.setAltura(0.0f);
+        this.setListaPassageiros(ListaPassageiros);
     }
     
     public String getModelo() {
@@ -80,6 +81,10 @@ class Aviao {
         return ListaPassageiros;
     }
 
+    private void setListaPassageiros(ArrayList<Passageiro> ListaPassageiros){
+        this.ListaPassageiros = ListaPassageiros;
+    }
+
     public boolean adicionarPassageiro(Passageiro passenger){
         if(this.getVelocidade() > 0){
             System.out.println("Protocolos de segurança não permitem embarques com a aeronave em movimento");
@@ -99,6 +104,12 @@ class Aviao {
                 passenger = passageiro;
 
         return passenger;
+    }
+
+    public void imprimirListaDePassageiros(ArrayList<Passageiro> ListaPassageiros){
+        for (Passageiro passenger : ListaPassageiros) {
+            System.out.println(passenger.getPrimeiroNome() + " " + passenger.getUltimoNome() + ", CPF: " + passenger.getCpf());
+        }
     }
 
     public void desembarcarPassageiros(){
